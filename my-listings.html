@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MokeSell - My Listings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">MokeSell</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="category.html?category=clothes">Clothes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="category.html?category=electronics">Electronics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="category.html?category=books">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="category.html?category=collectables">Collectables</a></li>
+                    <li class="nav-item"><a class="nav-link" href="category.html?category=luxury">Luxury</a></li>
+                    <li class="nav-item"><a class="nav-link" href="spin-and-win.html"><i class="bi bi-gift me-1"></i>Spin & Win</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="sell.html" class="btn btn-outline-primary me-2" id="sellButton" style="display: none;">
+                        <i class="bi bi-plus-lg me-1"></i>List Item
+                    </a>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="loginRegisterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle me-1"></i>Login / Register
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginRegisterDropdown">
+                            <li><a class="dropdown-item" href="/login.html"><i class="bi bi-box-arrow-in-right me-2"></i>Login</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/signup.html"><i class="bi bi-person-plus me-2"></i>Register</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown" id="userProfileButton" style="display: none;">
+                        <button class="btn btn-light rounded-circle p-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle fs-4"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><span class="dropdown-item-text username fw-bold"></span></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a></li>
+                            <li><a class="dropdown-item" href="my-listings.html"><i class="bi bi-shop me-2"></i>My Listings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#" onclick="localStorage.removeItem('user'); window.location.reload();"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- My Listings -->
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>My Listings</h1>
+            <a href="sell.html" class="btn btn-primary">
+                <i class="bi bi-plus-lg me-2"></i>Add New Listing
+            </a>
+        </div>
+        <div id="myListings" class="row g-4">
+            <!-- Listings will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Listing</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <input type="hidden" id="editProductId">
+                        <div class="mb-3">
+                            <label for="editTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="editTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="editDescription" rows="4" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPrice" class="form-label">Price ($)</label>
+                            <input type="number" class="form-control" id="editPrice" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editCategory" class="form-label">Category</label>
+                            <select class="form-control" id="editCategory" required>
+                                <option value="clothes">Clothes</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="books">Books</option>
+                                <option value="collectables">Collectables</option>
+                                <option value="luxury">Luxury</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editImages" class="form-label">Add New Images</label>
+                            <input type="file" class="form-control" id="editImages" accept="image/*" multiple>
+                            <div id="editImagePreview" class="mt-2 d-flex flex-wrap gap-2">
+                                <!-- Current images will be shown here -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveChanges">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this listing? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light mt-auto py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>MokeSell</h5>
+                    <p>535 Clementi Road,<br>Singapore 599489</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="privacy-policy.html" class="text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-decoration-none">Terms & Conditions</a></li>
+                        <li><a href="how-to-use.html" class="text-decoration-none">How to Use</a></li>
+                        <li><a href="feedback.html" class="text-decoration-none">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>contact@mokesell.com<br>+65 6460 6999</p>
+                    <div class="social-links">
+                        <a href="#" class="text-dark me-2"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-dark me-2"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="text-dark"><i class="bi bi-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col text-center">
+                    <small>© 2025 MokeSell. All rights reserved.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div class="toast-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/my-listings.js"></script>
+</body>
+</html>
