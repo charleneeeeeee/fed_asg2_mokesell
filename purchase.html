@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MokeSell - Purchase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <button id="backButton" class="btn btn-outline-secondary mb-4">
+                    <i class="bi bi-arrow-left me-2"></i>Back to Product
+                </button>
+
+                <div class="card shadow-sm">
+                    <div class="card-body p-4">
+                        <h2 class="text-center mb-4">Complete Your Purchase</h2>
+                        
+                        <!-- Product Summary -->
+                        <div class="border rounded p-3 mb-4">
+                            <div class="d-flex">
+                                <img id="productImage" class="rounded me-3" style="width: 100px; height: 100px; object-fit: cover;" alt="Product">
+                                <div class="flex-grow-1">
+                                    <h5 id="productTitle" class="mb-1"></h5>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <p class="text-muted mb-0">Original Price:</p>
+                                            <p id="productPrice" class="fs-4 fw-bold text-primary mb-0"></p>
+                                        </div>
+                                        <div id="discountInfo" style="display: none;">
+                                            <p class="text-muted mb-0">After Discount:</p>
+                                            <p id="discountedPrice" class="fs-4 fw-bold text-success mb-0"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Discount Code Section -->
+                        <div class="mb-4">
+                            <h5 class="mb-3">Your Vouchers</h5>
+                            <div class="input-group">
+                                <select class="form-select" id="discountCode">
+                                    <option value="">Select a voucher</option>
+                                </select>
+                                <button class="btn btn-outline-primary" type="button" id="applyDiscount">Apply</button>
+                            </div>
+                            <div id="discountMessage" class="form-text text-muted">Select a voucher to apply</div>
+                        </div>
+
+                        <!-- Payment Form -->
+                        <form id="purchaseForm">
+                            <h5 class="mb-3">Shipping Information</h5>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="address" class="form-label">Address</label>
+                                    <input type="text" class="form-control" id="address" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="city" class="form-label">City</label>
+                                    <input type="text" class="form-control" id="city" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="postalCode" class="form-label">Postal Code</label>
+                                    <input type="text" class="form-control" id="postalCode" required>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <h5 class="mb-3">Payment Information</h5>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="cardNumber" class="form-label">Card Number</label>
+                                    <input type="text" class="form-control" id="cardNumber" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="expiryDate" class="form-label">Expiry Date</label>
+                                    <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cvv" class="form-label">CVV</label>
+                                    <input type="text" class="form-control" id="cvv" required>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary w-100 mt-4" type="submit">
+                                Complete Purchase
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Purchase Successful!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="bi bi-check-circle-fill text-success display-1 mb-3"></i>
+                    <h4>Thank you for your purchase!</h4>
+                    <p class="mb-1">Total Amount Paid: <span id="successPrice" class="fw-bold"></span></p>
+                    <p class="text-muted">A confirmation email has been sent to your email address.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="index.html" class="btn btn-primary">Return to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/purchase.js"></script>
+</body>
+</html>
