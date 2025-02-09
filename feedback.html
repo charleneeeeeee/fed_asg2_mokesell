@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MokeSell - Submit Feedback</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">MokeSell</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="category.html?category=clothes">Clothes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="category.html?category=electronics">Electronics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="category.html?category=books">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="category.html?category=collectables">Collectables</a></li>
+                    <li class="nav-item"><a class="nav-link" href="category.html?category=luxury">Luxury</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Feedback Form -->
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <i class="bi bi-chat-dots display-1 text-primary"></i>
+                            <h1 class="mt-3">Submit Feedback</h1>
+                            <p class="text-muted">We value your feedback! Let us know how we can improve.</p>
+                        </div>
+
+                        <form id="feedbackForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Your Feedback</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="bi bi-send me-2"></i>Submit Feedback
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light mt-auto py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>MokeSell</h5>
+                    <p>535 Clementi Road,<br>Singapore 599489</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="privacy-policy.html" class="text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-decoration-none">Terms & Conditions</a></li>
+                        <li><a href="how-to-use.html" class="text-decoration-none">How to Use</a></li>
+                        <li><a href="feedback.html" class="text-decoration-none">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>contact@mokesell.com<br>+65 6460 6999</p>
+                    <div class="social-links">
+                        <a href="#" class="text-dark me-2"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-dark me-2"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="text-dark"><i class="bi bi-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col text-center">
+                    <small>© 2025 MokeSell. All rights reserved.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thank You!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="bi bi-check-circle-fill text-success display-1 mb-3"></i>
+                    <h4>Feedback Submitted Successfully</h4>
+                    <p class="text-muted">We appreciate your feedback and will use it to improve our services.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="index.html" class="btn btn-primary">Return to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/feedback.js"></script>
+</body>
+</html>
